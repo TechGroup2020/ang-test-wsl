@@ -1,0 +1,6 @@
+projectKey=Angular-2
+serverUrl=http://194.163.130.156:9000
+serverVersion=10.4.0.87286
+dashboardUrl=http://194.163.130.156:9000/dashboard?id=Angular-2
+ceTaskId=06f91f89-4a3a-46b4-ae62-ec6978785eee
+ceTaskUrl=http://194.163.130.156:9000/api/ce/task?id=06f91f89-4a3a-46b4-ae62-ec6978785eee
