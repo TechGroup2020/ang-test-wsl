@@ -101,6 +101,14 @@ pipeline {
         
             }
         }
+      stage('DCGC') {
+            steps {
+                dir('/opt/HelloWrld-main'){
+                    sh "rm -rf  HelloWrld-main HelloWrld-main@tmp"
+                }
+        
+            }
+        }
         
     }
 }
