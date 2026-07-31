@@ -103,7 +103,7 @@ pipeline {
         }
       stage('DCGC') {
             steps {
-                dir('/opt/HelloWrld-main'){
+                dir('/opt/'){
                     sh "rm -rf  HelloWrld-main HelloWrld-main@tmp"
                 }
         
