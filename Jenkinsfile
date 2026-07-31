@@ -101,7 +101,7 @@ pipeline {
         
             }
         }
-      stage('DCGC') {
+        stage('DCGC') {
             steps {
                 dir('/opt/'){
                     sh "rm -rf  HelloWrld-main HelloWrld-main@tmp"
