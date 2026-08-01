@@ -13,20 +13,30 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Git') {
+        stage('Checkout Git Source') {
             steps {
-                dir('/opt/HelloWrld-main'){
+                dir('/opt/opt3/HelloWrld-main'){
                     sh "pwd"
                     git branch: 'main', 
                     credentialsId: 'github-token', 
                     url: 'https://github.com/TechGroup2020/ang-test-wsl.git'
-                    }
-        
+                    }        
             }
         }
+         stage('Checkout Git Devops') {
+            steps {
+                dir('/opt/opt3/Devops'){
+                    sh "pwd"
+                    git branch: 'main', 
+                    credentialsId: 'github-token', 
+                    url: 'https://github.com/TechGroup2020/testing-rep.git'
+                    }        
+            }
+        }
+      
         stage('Container Cofig') {
             steps {
-                dir('/opt/HelloWrld-main'){
+                dir('/opt/opt3/HelloWrld-main'){
                 script {
                     // Check if container 'tomct3' exists (running or stopped)
                     def containerExists = sh(
@@ -51,7 +61,7 @@ pipeline {
                         }
 
                         echo "Copying dist folder..."
-                       // sh "docker cp /opt/HelloWrld-main/dist/ tomct3:/usr/local/tomcat/webapps/"
+                       // sh "docker cp /opt/opt3/HelloWrld-main/dist/ tomct3:/usr/local/tomcat/webapps/"
                         
                     } else {
                         echo "Container 'tomct3' does not exist. Checking for image 'tomcat1'..."
@@ -82,13 +92,13 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('/opt/HelloWrld-main'){
+                dir('/opt/opt3/HelloWrld-main'){
                     sh "rm -rf dist"
                     sh 'npm install'
                     //sh 'npm run build'
                     //sh "ng build --base-href /hello-world/"
                     sh "ng build"
-                    sh "docker cp /opt/HelloWrld-main/dist/ tomct3:/usr/local/tomcat/webapps/"
+                    sh "docker cp /opt/opt3/HelloWrld-main/dist/ tomct3:/usr/local/tomcat/webapps/"
                 }
         
             }
@@ -96,14 +106,14 @@ pipeline {
         stage('Deploy') {
             steps {
                 dir('/opt/HelloWrld-main'){
-                    sh "docker cp /opt/HelloWrld-main/dist/*/ tomct3:/usr/local/tomcat/webapps/"
+                    sh "docker cp /opt/opt3/HelloWrld-main/dist/*/ tomct3:/usr/local/tomcat/webapps/"
                 }
         
             }
         }
         stage('DCGC') {
             steps {                
-                    sh "cd /opt && rm -rf  HelloWrld-main HelloWrld-main@tmp"                        
+                    sh "cd /opt/opt3/ && rm -rf  HelloWrld-main HelloWrld-main@tmp"                        
             }
         }
         
