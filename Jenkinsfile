@@ -113,7 +113,8 @@ pipeline {
         }
         stage('DCGC') {
             steps {                
-                    sh "cd /opt/opt3/ && rm -rf  HelloWrld-main HelloWrld-main@tmp"                        
+                    sh "cd /opt/opt3/ && rm -rf  HelloWrld-main HelloWrld-main@tmp"  
+                    sh "cd /opt/opt3/ && rm -rf Devops  Devops@tmp  devops@tmp"
             }
         }
         
